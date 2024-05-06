@@ -1,0 +1,147 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+#bar{
+  height: 100px;
+  background-color: rgb(18, 2, 76);
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: space-between;
+  /* position: fixed; */
+}
+#name{
+  color:white;
+  margin-left: 40px;
+  margin-right: 40px;
+  text-decoration: none;
+  font-size: 75px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+body{
+  background-color:linen;
+}
+.bar-buttons{
+  color:white;
+  height: auto;
+  text-decoration: none;
+  font-size:x-large;
+}
+#flights{
+  margin-top: 30px;
+}
+#train{
+  margin-top: 30px;
+}
+#help{
+  margin-top: 30px;
+  margin-left:100px;
+}
+#logo{
+  display: flex;
+  justify-content: flex-start;
+}
+#sign{
+  color:white;
+  height: 20px;
+  text-decoration: none;
+  font-size:large;
+  margin-right: 10px;
+  border: 2px solid white;
+}
+.btn {
+  width: 180px;
+  height: 50px;
+  margin-top: 25px;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.5s ease-in-out;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  background: rgb(18, 2, 76);
+  color: #fff;
+}
+
+.btn:hover {
+  box-shadow: 0 0 20px 0px #12024c;
+  cursor: pointer;
+}
+
+.btn .icon {
+  position: absolute;
+  height: 70px;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+}
+
+.btn .text {
+  transform: translateX(55px);
+}
+
+.btn:hover .icon {
+  width: 175px;
+}
+
+.btn:hover .text {
+  transition: all 0.5s;
+  opacity: 0;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active .icon {
+  transform: scale(0.95);
+}
+#img1{
+  width: 500px;
+  height: 450px;
+}
+#img2{
+  width: 800px;
+  height: 450px;
+  
+  margin-top: 60px;
+  margin-left: 700px;
+  
+}
+#copyright{
+  background-color: #12024c;
+  height: 100px;
+}
+#foot{
+  display: flex;
+}
+a{
+  text-decoration: none;
+}
+.hot-deals{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  height: 50%;
+  width: 250px;
+  gap: 25px;
+}
+.hot-deals > div{
+  display: flex;
+  width: 80%;
+  height: 350px;
+  aspect-ratio:  1/1;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  background-color:rgba(234, 196, 213,0.8);
+  transition: all ease 0.5s;
+}
+.hot-deals > div:hover{
+  width: 120%;
+  scale: 1.2;
+}

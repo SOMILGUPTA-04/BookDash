@@ -1,0 +1,41 @@
+body{
+    background-color: linen;
+}
+#head{
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+}
+#people{
+    display:flex;
+    justify-content: space-around;
+}
+#box{
+    display:flex;
+    justify-content: space-around;
+}
+#photo{
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    background-color:rgba(18, 2, 76,0.4);
+}
+#info{
+    margin-top: -25px;
+    z-index: -1;
+    height: 300px;
+    width: 300px;
+    background-color: azure;
+    display: flex;
+    justify-content: center;
+}
+#copyright{
+    background-color: #12024c;
+    height: 100px;
+}
+#foot{
+    display: flex;
+}
+a{
+    text-decoration: none;
+}
