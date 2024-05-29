@@ -8,7 +8,8 @@ const FlightSchema = new mongoose.Schema({
   },
   FlightNumber:{
     type:Number,
-    required:true
+    required:true,
+    unique:true
   },
   From:{
     type:String,
@@ -28,4 +29,6 @@ const FlightSchema = new mongoose.Schema({
   },
   
 });
-export default mongoose.model("flight",FlightSchema);
+const Flight=mongoose.model("flight",FlightSchema);
+
+export default Flight;
