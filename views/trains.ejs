@@ -47,54 +47,77 @@
     </div>
 
     <!-- This is for the dialogue box -->
-    <div id="dialogue">
+    <form id="trainform">
+        <div id="dialogue">
             <div id="places">
-                <div class="InputContainer" style="margin-right: 20px;">
-                    <input placeholder="FROM" id="input" class="input" name="text" type="text">
-                </div> 
-                <div class="InputContainer" style="margin-right: 67px;">
-                    <input placeholder="TO" id="input" class="input" name="text" type="text">
-                </div>
-            </div><br>
-            <div id="dates">
-                <div class="InputContainer2" style="margin-right: 10px"><p style="margin-right:10px">Departure
-                    <input placeholder="Departure" id="dates" class="input2" type="date">
-                    </p>
-                </div>
-                <div class="InputContainer2" style="margin-right: 200px"><p>Return
-                    <input placeholder="Return" id="dates" class="input2" type="date"></p>
-                </div>
-            </div>
-            <div id="type">
-                <div id="classcateg" class="InputContainer" style="margin-right:290px; margin-bottom:10px;">
-                    <select name="Class" id="" class="InputContainer" ><option value="" disabled selected>Class</option><option> 1AC</option><option> 2AC </option> <option> 3AC</option> <option> Chair-car </option><option> Sleeper</option>
-                    </select>
-                </div>
-            </div>
-            <div id="srch">
-                <div class="searchdiv" style="margin-right: 10px;">
-                    <button id="searchbtn"><img src="/media/magnify.png" id="searchbtnimg"><p id="searchtxt">Search</p></button>
-                </div>
-            </div>
+                <div class="InputContainer" style="margin-left: 10px;">
+            <input placeholder="FROM" id="input" class="input" name="from" type="text" list="list1">
+            <datalist id="list1">
+                <% uniqueFromValues.forEach(function(fromValue) { %>
+                    <option value="<%= fromValue %>"><%= fromValue %></option>
+                <% }); %>
+            </datalist>
+        </div>
+        <div class="InputContainer" style="margin-left: 10px;">
+            <input placeholder="TO" id="input" class="input" name="to" type="text" list="list2">
+            <datalist id="list2">
+                <% uniqueToValues.forEach(function(toValue) { %>
+                    <option value="<%= toValue %>"><%= toValue %></option>
+                <% }); %>
+            </datalist>
+        </div>
+    </div><br>
+    <div id="dates">
+        <div class="InputContainer2" style="margin-left: 10px"><p style="margin-right:10px">Departure
+            <input placeholder="Departure" name="depart" id="dates" class="input2" type="date">
+        </p>
     </div>
+        <div class="InputContainer2" style="margin-left: 10px"><p>Return
+            <input placeholder="Return" name="arrive" id="dates" class="input2" type="date"></p>
+        </div>
+    </div>
+    <div id="type">
+        <div id="classcateg" class="InputContainer" style="margin-left:10px; margin-bottom:10px;">
+            <select name="Class" id="Class" class="InputContainer" ><option value="" disabled selected>Class</option><option> 1AC</option><option> 2AC </option> <option> 3AC</option> <option> Chair-car </option><option> Sleeper</option>
+            </select>
+        </div>
+    </div>
+    <div id="srch">
+        <div class="searchdiv" style="margin-right: 10px;">
+        <a href="../views/displaytrains.ejs"><button id="searchbtn" type="submit"><img src="/media/magnify.png" id="searchbtnimg"><p id="searchtxt">Search</p></button></a>
+        </div>
+    </div>
+</div>
+</form>
     <div style="background-color:#95B8D1;margin-top:-40px"><p id="Top-picks">OUR TOP PICKS</p></div>
-    <div class="deal" style="margin-top: -2px;">
+    <div class="deal" style="margin-top: -5px;">
         <div class="hot-deals" style="color:#180276">
-            <div id="deal" ><h3> Delhi to Mumbai</h3> </div>
-            <div id="deal" ><h3> Delhi to Goa</h3> </div>
-            <div id="deal" ><h3> Delhi to Kochi</h3> </div>
-            <div id="deal" ><h3> Chennai to Pune</h3> </div>
-            <div id="deal" ><h3> Delhi to Kashmere</h3> </div>
+            <div id="deal" onclick="window.location.href='/views/displaytrains.ejs';" style="cursor: pointer;">
+                <h3 style="color:#0000EE">Delhi to Mumbai</h3>
+            </div>
         </div>
-    </div> 
+        <div class="hot-deals" style="color:#180276">
+            <div id="deal" onclick="window.location.href='/views/displaytrains.ejs';" style="cursor: pointer;">
+                <h3 style="color:#0000EE">Delhi to Goa</h3>
+            </div>
+        </div>
+        <div class="hot-deals" style="color:#180276">
+            <div id="deal" onclick="window.location.href='/views/displaytrains.ejs';" style="cursor: pointer;">
+                <h3 style="color:#0000EE">Delhi to Kochi</h3>
+            </div>
+        </div>
+        <div class="hot-deals" style="color:#180276">
+            <div id="deal" onclick="window.location.href='/views/displaytrains.ejs';" style="cursor: pointer;">
+                <h3 style="color:#0000EE">Delhi to Pune</h3>
+            </div>
+        </div>
+        <div class="hot-deals" style="color:#180276">
+            <div id="deal" onclick="window.location.href='/views/displaytrains.ejs';" style="cursor: pointer;">
+                <h3 style="color:#0000EE">Delhi to Srinagar</h3>
+            </div>
         </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-
-
+</div>
     <footer id="copyright">
         <div id="foot">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height: 20px;margin-top:25px;margin-left:20px"><path fill="#ffffff" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM199.4 312.6c31.2 31.2 81.9 31.2 113.1 0c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9c-50 50-131 50-181 0s-50-131 0-181s131-50 181 0c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0c-31.2-31.2-81.9-31.2-113.1 0s-31.2 81.9 0 113.1z"/></svg>
@@ -110,7 +133,35 @@ Follow Us On <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style
             </pre>
         </div>
     </footer>
-    
     <script src="script.js"></script>
+    <script>
+        document.getElementById('trainform').addEventListener('submit', function(event) {
+            event.preventDefault();
+        
+            const formData = new FormData(this);
+        
+            let fromLocation = formData.get('from');
+            let toLocation = formData.get('to');
+            let departureDate = formData.get('depart');
+            let returnDate = formData.get('arrive');
+            let classChoice = formData.get('Class');
+        
+            console.log(`From Location: ${fromLocation}`);
+            console.log(`To Location: ${toLocation}`);
+            console.log(`Departure Date: ${departureDate}`);
+            console.log(`Return Date: ${returnDate}`);
+            console.log(`Class Choice: ${classChoice}`);
+            
+            // Storing data in local storage
+            localStorage.setItem('fromLocation', fromLocation);
+            localStorage.setItem('toLocation', toLocation);
+            localStorage.setItem('departureDate', departureDate);
+            localStorage.setItem('returnDate', returnDate);
+            localStorage.setItem('classChoice', classChoice);
+
+            // Redirecting to the next page
+            window.location.href = 'displaytrains.ejs'
+        });
+        </script>
 </body>
 </html>

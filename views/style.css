@@ -137,7 +137,7 @@ a{
   aspect-ratio:  1/1;
   justify-content: center;
   align-items: center;
-  object-fit: contain;
+  object-fit:contain;
   background-color:rgba(234, 196, 213,0.8);
   transition: all ease 0.5s;
 }

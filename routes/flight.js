@@ -3,8 +3,20 @@ import Flight from "../models/flight.js"
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.render('../views/flights.ejs');
+// router.get('/', (req, res) => {
+//     res.render('../views/flights.ejs');
+// });
+
+router.get('/', async(req,res)=>{
+    try {
+        const data=await Flight.find();
+        const uniqueFromValues = [...new Set(data.map(doc => doc.From))].sort();
+        const uniqueToValues = [...new Set(data.map(doc => doc.To))].sort();
+        res.render('../views/flights.ejs',{uniqueFromValues,uniqueToValues});
+
+    }catch(err){
+        res.status(500)
+    }
 });
 
 router.post('/', async (req, res) => {
@@ -38,7 +50,5 @@ router.delete('/:id', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
-
-
 
 export default router;

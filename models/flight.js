@@ -19,16 +19,22 @@ const FlightSchema = new mongoose.Schema({
     type:String,
     required:true
   },
-  Date:{
+  DepartDate:{
     type:Date,
     required:true
   },
-  Status:{
+  ReturnDate:{
+    type:Date,
+    required:true
+  },
+  Class:{
     type:String,
     required:true
   },
-  
+  Price:{
+    type:Number,
+    required:true,
+  },
 });
 const Flight=mongoose.model("flight",FlightSchema);
-
 export default Flight;

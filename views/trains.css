@@ -177,19 +177,15 @@ body{
 }
 #places{
   display: flex;
-  justify-content: flex-end;
 }
 #dates{
   display: flex;
-  justify-content: flex-end;
 }
 #type{
   display: flex;
-  justify-content: flex-end;
 }
 #srch{
   display: flex;
-  justify-content: flex-end;
 }
 .InputContainer2 {
   width: auto;
@@ -244,14 +240,15 @@ body{
 .hot-deals{
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 50px;
   height: 50%;
   width: 250px;
-  gap: 15px;
+  gap: 8px;
 }
 .hot-deals > div{
   display: flex;
-  width: 60%;
+  width: 90%;
   height: 250px;
   aspect-ratio:  1/1;
   justify-content: center;
