@@ -55,15 +55,20 @@
     </video>
 
     <div style="display: flex;justify-content:flex-start;background-color:aqua;margin-top:-4px">
-        <img src="/media/bg.jpeg" id="img1" style="margin-left: 5px;">
-        <div class="deal" style="margin-left: 260px;">
+        <img src="/media/bg.jpeg" id="img1" style="margin-left: 5px;margin-top:5px">
+        <div class="deal" style="margin-left: 230px;">
             <div class="hot-deals" style="color:#180276">
-                <div id="deal" ><h3> Delhi to Mumbai</h3> </div>
+                <div id="deal" onclick="window.location.href='/views/displaytrains.ejs';" style="cursor: pointer;">
+                    <h3 style="color:#0000EE">Delhi to Kolkata</h3>
+                </div>
             </div>
         </div>
         <div class="deal">
             <div class="hot-deals" style="color:#180276">
-                <div id="deal" ><h3> Delhi to Kolkata</h3> </div>
+                <div id="deal" onclick="window.location.href='/views/displaytrains.ejs';" style="cursor: pointer;">
+                    <h3 style="color:#0000EE">Delhi to Mumbai</h3>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -72,12 +77,16 @@
     <div style="display: flex;justify-content:flex-start;background-color:aqua;">
         <div class="deal" style="margin-left:80px;margin-top:40px">
             <div class="hot-deals" style="color:#180276">
-                <div id="deal" ><h3> Delhi to Mumbai</h3> </div>
+                <div id="deal" onclick="window.location.href='/views/displayflights.ejs';" style="cursor: pointer;">
+                    <h3 style="color:#0000EE">Delhi to Kolkata</h3>
+                </div>
             </div>
         </div>
         <div class="deal" style="margin-top:40px">
             <div class="hot-deals" style="color:#180276">
-                <div id="deal" ><h3> Delhi to Kolkata</h3> </div>
+                <div id="deal" onclick="window.location.href='/views/displayflights.ejs';" style="cursor: pointer;">
+                    <h3 style="color:#0000EE">Delhi to Mumbai</h3>
+                </div>
             </div>
         </div>
         <img src="/media/bg2.jpeg" id="img2" style="margin-left: 150px;">

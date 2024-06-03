@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { Schema } from 'mongoose';
+
 const TrainsSchema = new mongoose.Schema({
   TrainName:{
     type:String,
@@ -18,14 +19,22 @@ const TrainsSchema = new mongoose.Schema({
     type:String,
     required:true
   },
-  Date:{
+  DepartDate:{
     type:Date,
     required:true
   },
-  Status:{
+  ReturnDate:{
+    type:Date,
+    required:true
+  },
+  Class:{
     type:String,
     required:true
-  }
+  },
+  Price:{
+    type:Number,
+    required:true,
+  },
 });
 const TRAIN= mongoose.model("trains",TrainsSchema);
 export default TRAIN;

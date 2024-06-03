@@ -3,8 +3,20 @@ import TRAIN from "../models/trains.js";
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.render('../views/trains.ejs');
+// router.get('/', (req, res) => {
+//     res.render('../views/trains.ejs');
+// });
+
+router.get('/', async(req,res)=>{
+    try {
+        const data=await TRAIN.find();
+        const uniqueFromValues = [...new Set(data.map(doc => doc.From))].sort();
+        const uniqueToValues = [...new Set(data.map(doc => doc.To))].sort();
+        res.render('../views/trains.ejs',{uniqueFromValues,uniqueToValues});
+
+    }catch(err){
+        res.status(500)
+    }
 });
 
 router.post('/', async (req, res) => {

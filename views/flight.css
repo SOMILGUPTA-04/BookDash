@@ -98,7 +98,7 @@ opacity: 0;
 outline: none;
 }
 .btn:active .icon {
-transform: scale(0.85);
+transform: scale(0.95);
 }
 /* .button {
 width: 110px;
@@ -293,19 +293,19 @@ margin-top: 100px;
   background-color:#D6EADF;
   background-attachment: scroll;
   height: 450px;
-  margin-top:10px;
 }
 .hot-deals{
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 50px;
   height: 50%;
-  width: 250px;
-  gap: 15px;
+  width: 200px;
+  gap: 8px;
 }
 .hot-deals > div{
   display: flex;
-  width: 60%;
+  width: 90%;
   height: 250px;
   aspect-ratio:  1/1;
   justify-content: center;
