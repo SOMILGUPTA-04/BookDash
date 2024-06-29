@@ -146,21 +146,16 @@ Follow Us On <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style
             let returnDate = formData.get('arrive');
             let classChoice = formData.get('Class');
         
-            console.log(`From Location: ${fromLocation}`);
-            console.log(`To Location: ${toLocation}`);
-            console.log(`Departure Date: ${departureDate}`);
-            console.log(`Return Date: ${returnDate}`);
-            console.log(`Class Choice: ${classChoice}`);
-            
-            // Storing data in local storage
-            localStorage.setItem('fromLocation', fromLocation);
-            localStorage.setItem('toLocation', toLocation);
-            localStorage.setItem('departureDate', departureDate);
-            localStorage.setItem('returnDate', returnDate);
-            localStorage.setItem('classChoice', classChoice);
+            const urlParams = new URLSearchParams({
+                fromLocation,
+                toLocation,
+                departureDate,
+                returnDate,
+                classChoice
+            }).toString();
 
-            // Redirecting to the next page
-            window.location.href = 'displaytrains.ejs'
+            // Redirecting to the next page with the constructed URL
+            window.location.href = `displaytrains.ejs?${urlParams}`;
         });
         </script>
 </body>

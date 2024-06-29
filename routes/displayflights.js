@@ -5,35 +5,35 @@ const router = express.Router();
 
 router.get('/', async(req,res)=>{
     try {
-        const data=await Flight.find();
-        res.render('../views/displayflights.ejs',{data});
+        const { fromLocation, toLocation, departureDate, returnDate, classChoice } = req.query;
 
+        const flightData = await Flight.findOne({ From: fromLocation, To: toLocation, DepartDate: new Date(departureDate), ReturnDate: new Date(returnDate), Class:classChoice });
+
+        // Initialize comparison result
+        let comparisonResult = {};
+        let data = [];
+        
+        // Compare the data
+        if (flightData) {
+            comparisonResult.from = flightData.From === fromLocation;
+            comparisonResult.to = flightData.To === toLocation;
+            comparisonResult.departDate = new Date(flightData.DepartDate).toISOString().split('T')[0] === departureDate;
+            comparisonResult.returnDate = new Date(flightData.ReturnDate).toISOString().split('T')[0] === returnDate;
+            comparisonResult.class = flightData.Class === classChoice;
+            if (comparisonResult.from && comparisonResult.to && comparisonResult.departDate && comparisonResult.returnDate && comparisonResult.class) {
+                data.push(flightData);
+            }
+        } 
+       else {
+            comparisonResult.error = 'Flight not found';
+        } 
+        
+        
+        console.log(comparisonResult);
+        res.render('../views/displayflights.ejs', { data});
     }catch(err){
         res.status(500)
     }
 });
-
-
-
-
-
-
-// Search route
-// router.get('/search', async (req, res) => {
-//     const { from, to, departure, return: returnDate } = req.query;
-
-//     try {
-//         const flights = await Flight.find({
-//             from: new RegExp(from, 'i'),
-//             to: new RegExp(to, 'i'),
-//             departureDate: new Date(departure),
-//             ...(returnDate && { returnDate: new Date(returnDate) })
-//         });
-
-//         res.render('displayflights', { flights });
-//     } catch (err) {
-//         res.status(500).send('Server Error');
-//     }
-// });
 
 export default router;

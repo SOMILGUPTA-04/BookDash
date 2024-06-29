@@ -103,18 +103,18 @@
 </form>
     <div style="background-color:#95B8D1;margin-top:-40px"><p id="Top-picks">OUR TOP PICKS</p></div>
     <div class="deal" style="margin-top: -5px;">
-        <div class="hot-deals" style="color:#180276">
-            <div id="deal" onclick="window.location.href='/views/displayflights.ejs';" style="cursor: pointer;">
+        <div class="hot-deals"  style="color:#180276">
+            <div id="deal" onclick="redirectToFlightPage('Delhi', 'Mumbai');" style="cursor: pointer;">
                 <h3 style="color:#0000EE">Delhi to Mumbai</h3>
             </div>
         </div>
         <div class="hot-deals" style="color:#180276">
-            <div id="deal" onclick="window.location.href='/views/displayflights.ejs';" style="cursor: pointer;">
+            <div id="deal" onclick="window.location.href='/displayflights.ejs';" style="cursor: pointer;">
                 <h3 style="color:#0000EE">Delhi to Goa</h3>
             </div>
         </div>
         <div class="hot-deals" style="color:#180276">
-            <div id="deal" onclick="window.location.href='/views/displayflights.ejs';" style="cursor: pointer;">
+            <div id="deal" onclick="window.location.href='/displayflights.ejs';" style="cursor: pointer;">
                 <h3 style="color:#0000EE">Delhi to Kochi</h3>
             </div>
         </div>
@@ -129,19 +129,6 @@
             </div>
         </div>
     </div>
-    
-    <!-- <h1>Flight Data</h1>
-    <ul>
-    <% uniqueFromValues.forEach(item => { %>
-      <li>From: <%= item %></li>
-    <% }); %>
-  </ul>
-    <ul>
-    <% uniqueToValues.forEach(item => { %>
-      <li>To: <%= item %></li>
-    <% }); %>
-  </ul> -->
-
     <footer id="copyright">
         <div id="foot">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height: 20px;margin-top:25px;margin-left:20px"><path fill="#ffffff" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM199.4 312.6c31.2 31.2 81.9 31.2 113.1 0c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9c-50 50-131 50-181 0s-50-131 0-181s131-50 181 0c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0c-31.2-31.2-81.9-31.2-113.1 0s-31.2 81.9 0 113.1z"/></svg>
@@ -158,35 +145,33 @@ Follow Us On <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style
         </div>
     </footer>
 
-
     <script src="script.js"></script>
     <script>
+        function redirectToFlightPage(fromLocation, toLocation) {
+            const url = `/views/displayflights.ejs?fromLocation=${encodeURIComponent(fromLocation)}&toLocation=${encodeURIComponent(toLocation)}`;
+            window.location.href = url;
+        }
         document.getElementById('flightForm').addEventListener('submit', function(event) {
             event.preventDefault();
         
             const formData = new FormData(this);
-        
             let fromLocation = formData.get('from');
             let toLocation = formData.get('to');
             let departureDate = formData.get('depart');
             let returnDate = formData.get('arrive');
             let classChoice = formData.get('Class');
-        
-            console.log(`From Location: ${fromLocation}`);
-            console.log(`To Location: ${toLocation}`);
-            console.log(`Departure Date: ${departureDate}`);
-            console.log(`Return Date: ${returnDate}`);
-            console.log(`Class Choice: ${classChoice}`);
-            
-            // Storing data in local storage
-            localStorage.setItem('fromLocation', fromLocation);
-            localStorage.setItem('toLocation', toLocation);
-            localStorage.setItem('departureDate', departureDate);
-            localStorage.setItem('returnDate', returnDate);
-            localStorage.setItem('classChoice', classChoice);
 
-            // Redirecting to the next page
-            window.location.href = 'displayflights.ejs'
+            const urlParams = new URLSearchParams({
+                fromLocation,
+                toLocation,
+                departureDate,
+                returnDate,
+                classChoice
+            }).toString();
+        
+            // Redirecting to the next page with the constructed URL
+            window.location.href = `displayflights.ejs?${urlParams}`;
+
         });
         </script>
 </body>
