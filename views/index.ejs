@@ -58,14 +58,14 @@
         <img src="/media/bg.jpeg" id="img1" style="margin-left: 5px;margin-top:5px">
         <div class="deal" style="margin-left: 230px;">
             <div class="hot-deals" style="color:#180276">
-                <div id="deal" onclick="window.location.href='/views/displaytrains.ejs';" style="cursor: pointer;">
+                <div id="deal" onclick="redirectToTrainPage('Delhi', 'Kolkata');" style="cursor: pointer;">
                     <h3 style="color:#0000EE">Delhi to Kolkata</h3>
                 </div>
             </div>
         </div>
         <div class="deal">
             <div class="hot-deals" style="color:#180276">
-                <div id="deal" onclick="window.location.href='/views/displaytrains.ejs';" style="cursor: pointer;">
+                <div id="deal" onclick="redirectToTrainPage('Delhi', 'Mumbai');" style="cursor: pointer;">
                     <h3 style="color:#0000EE">Delhi to Mumbai</h3>
                 </div>
                 
@@ -77,15 +77,15 @@
     <div style="display: flex;justify-content:flex-start;background-color:aqua;">
         <div class="deal" style="margin-left:80px;margin-top:40px">
             <div class="hot-deals" style="color:#180276">
-                <div id="deal" onclick="window.location.href='/views/displayflights.ejs';" style="cursor: pointer;">
+                <div id="deal" onclick="redirectToFlightPage('Indira Gandhi International (DEL)', 'Kolkata (CCU)')" style="cursor: pointer;">
                     <h3 style="color:#0000EE">Delhi to Kolkata</h3>
                 </div>
             </div>
         </div>
         <div class="deal" style="margin-top:40px">
             <div class="hot-deals" style="color:#180276">
-                <div id="deal" onclick="window.location.href='/views/displayflights.ejs';" style="cursor: pointer;">
-                    <h3 style="color:#0000EE">Delhi to Mumbai</h3>
+                <div id="deal" onclick="redirectToFlightPage('Indira Gandhi International (DEL)', 'Leh (IXL)')" style="cursor: pointer;">
+                    <h3 style="color:#0000EE">Delhi to Leh</h3>
                 </div>
             </div>
         </div>
@@ -125,6 +125,40 @@ Follow Us On <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style
         clip.addEventListener("mouseout", () => {
             clip.pause();
         })
+        function redirectToTrainPage(from, to) {
+            console.log(from);
+            console.log(to);
+            fromLocation=from;
+            toLocation=to;
+            classChoice ='';
+            departureDate = '';
+            returnDate = '';
+            const urlParams = new URLSearchParams({
+                fromLocation,
+                toLocation,
+                departureDate,
+                returnDate,
+                classChoice
+            }).toString();
+            window.location.href = `displaytrains.ejs?${urlParams}`;
+        }
+        function redirectToFlightPage(from, to) {
+            console.log(from);
+            console.log(to);
+            fromLocation=from;
+            toLocation=to;
+            classChoice ='';
+            departureDate = '';
+            returnDate = '';
+            const urlParams = new URLSearchParams({
+                fromLocation,
+                toLocation,
+                departureDate,
+                returnDate,
+                classChoice
+            }).toString();
+            window.location.href = `displayflights.ejs?${urlParams}`;
+        }
     </script>
 </body>
 </html>

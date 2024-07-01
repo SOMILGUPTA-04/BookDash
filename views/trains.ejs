@@ -92,27 +92,27 @@
     <div style="background-color:#95B8D1;margin-top:-40px"><p id="Top-picks">OUR TOP PICKS</p></div>
     <div class="deal" style="margin-top: -5px;">
         <div class="hot-deals" style="color:#180276">
-            <div id="deal" onclick="window.location.href='/views/displaytrains.ejs';" style="cursor: pointer;">
+            <div id="deal" onclick="redirectToTrainPage('Delhi', 'Amritsar');" style="cursor: pointer;">
                 <h3 style="color:#0000EE">Delhi to Mumbai</h3>
             </div>
         </div>
         <div class="hot-deals" style="color:#180276">
-            <div id="deal" onclick="window.location.href='/views/displaytrains.ejs';" style="cursor: pointer;">
+            <div id="deal" onclick="redirectToTrainPage('Delhi', 'Goa');" style="cursor: pointer;">
                 <h3 style="color:#0000EE">Delhi to Goa</h3>
             </div>
         </div>
         <div class="hot-deals" style="color:#180276">
-            <div id="deal" onclick="window.location.href='/views/displaytrains.ejs';" style="cursor: pointer;">
+            <div id="deal" onclick="redirectToTrainPage('Delhi', 'Kochi');" style="cursor: pointer;">
                 <h3 style="color:#0000EE">Delhi to Kochi</h3>
             </div>
         </div>
         <div class="hot-deals" style="color:#180276">
-            <div id="deal" onclick="window.location.href='/views/displaytrains.ejs';" style="cursor: pointer;">
+            <div id="deal" onclick="redirectToTrainPage('Delhi', 'Pune');" style="cursor: pointer;">
                 <h3 style="color:#0000EE">Delhi to Pune</h3>
             </div>
         </div>
         <div class="hot-deals" style="color:#180276">
-            <div id="deal" onclick="window.location.href='/views/displaytrains.ejs';" style="cursor: pointer;">
+            <div id="deal" onclick="redirectToTrainPage('Delhi', 'Srinagar');" style="cursor: pointer;">
                 <h3 style="color:#0000EE">Delhi to Srinagar</h3>
             </div>
         </div>
@@ -135,6 +135,23 @@ Follow Us On <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style
     </footer>
     <script src="script.js"></script>
     <script>
+        function redirectToTrainPage(from, to) {
+            console.log(from);
+            console.log(to);
+            fromLocation=from;
+            toLocation=to;
+            classChoice ='';
+            departureDate = '';
+            returnDate = '';
+            const urlParams = new URLSearchParams({
+                fromLocation,
+                toLocation,
+                departureDate,
+                returnDate,
+                classChoice
+            }).toString();
+            window.location.href = `displaytrains.ejs?${urlParams}`;
+        }
         document.getElementById('trainform').addEventListener('submit', function(event) {
             event.preventDefault();
         
