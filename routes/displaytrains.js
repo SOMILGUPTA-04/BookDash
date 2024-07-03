@@ -5,12 +5,12 @@ const router = express.Router();
 
 router.get('/', async(req,res)=>{
     try {
-        const { fromLocation, toLocation, departureDate, returnDate, classChoice } = req.query;
+        const { fromLocation, toLocation, departureDate, classChoice } = req.query;
         // Initialize comparison result
         let comparisonResult = {};
         let data = [];
 
-        if(fromLocation && toLocation && departureDate==='' && returnDate==='' && classChoice==='') {
+        if(fromLocation && toLocation && departureDate==='' && classChoice==='') {
             const trainData = await TRAIN.find({ From: fromLocation, To: toLocation });
             if (trainData) {
                 trainData.forEach((train) => {
@@ -29,16 +29,15 @@ router.get('/', async(req,res)=>{
             } 
             res.render('../views/displaytrains.ejs', { data});
         }
-        const trainData = await TRAIN.findOne({ From: fromLocation, To: toLocation, DepartDate: new Date(departureDate), ReturnDate: new Date(returnDate), Class:classChoice });
+        const trainData = await TRAIN.findOne({ From: fromLocation, To: toLocation, DepartDate: new Date(departureDate), Class:classChoice });
         
         // Compare the data
         if (trainData) {
             comparisonResult.from = trainData.From === fromLocation;
             comparisonResult.to = trainData.To === toLocation;
             comparisonResult.departDate = new Date(trainData.DepartDate).toISOString().split('T')[0] === departureDate;
-            comparisonResult.returnDate = new Date(trainData.ReturnDate).toISOString().split('T')[0] === returnDate;
             comparisonResult.class = trainData.Class === classChoice;
-            if (comparisonResult.from && comparisonResult.to && comparisonResult.departDate && comparisonResult.returnDate && comparisonResult.class) {
+            if (comparisonResult.from && comparisonResult.to && comparisonResult.departDate && comparisonResult.class) {
                 data.push(trainData);
             }
         } else {

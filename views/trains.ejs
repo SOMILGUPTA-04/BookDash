@@ -51,44 +51,44 @@
         <div id="dialogue">
             <div id="places">
                 <div class="InputContainer" style="margin-left: 10px;">
-            <input placeholder="FROM" id="input" class="input" name="from" type="text" list="list1">
-            <datalist id="list1">
-                <% uniqueFromValues.forEach(function(fromValue) { %>
-                    <option value="<%= fromValue %>"><%= fromValue %></option>
-                <% }); %>
-            </datalist>
+                    <input placeholder="FROM" id="input" class="input" name="from" type="text" list="list1">
+                    <datalist id="list1">
+                        <% uniqueFromValues.forEach(function(fromValue) { %>
+                            <option value="<%= fromValue %>"><%= fromValue %></option>
+                        <% }); %>
+                    </datalist>
+                </div>
+                <div class="InputContainer" style="margin-left: 10px;">
+                    <input placeholder="TO" id="input" class="input" name="to" type="text" list="list2">
+                    <datalist id="list2">
+                        <% uniqueToValues.forEach(function(toValue) { %>
+                            <option value="<%= toValue %>"><%= toValue %></option>
+                        <% }); %>
+                    </datalist>
+                </div>
+            </div>
+            <br>
+            <div id="dates">
+                <div class="InputContainer2" style="margin-left: 10px"><p style="margin-right:10px">Departure
+                    <input placeholder="Departure" name="depart" id="dates" class="input2" type="date"></p>
+                </div>
+                <!-- <div class="InputContainer2" style="margin-left: 10px"><p>Return
+                    <input placeholder="Return" name="arrive" id="dates" class="input2" type="date"></p>
+                </div> -->
+            </div>
+            <div id="type">
+                <div id="classcateg" class="InputContainer" style="margin-left:10px; margin-bottom:10px;">
+                    <select name="Class" id="Class" class="InputContainer" ><option value="" disabled selected>Class</option><option> 1AC</option><option> 2AC </option> <option> 3AC</option> <option> Chair-car </option><option> Sleeper</option>
+                    </select>
+                </div>
+            </div>
+            <div id="srch">
+                <div class="searchdiv" style="margin-right: 10px;">
+                <a href="../views/displaytrains.ejs"><button id="searchbtn" type="submit"><img src="/media/magnify.png" id="searchbtnimg"><p id="searchtxt">Search</p></button></a>
+                </div>
+            </div>
         </div>
-        <div class="InputContainer" style="margin-left: 10px;">
-            <input placeholder="TO" id="input" class="input" name="to" type="text" list="list2">
-            <datalist id="list2">
-                <% uniqueToValues.forEach(function(toValue) { %>
-                    <option value="<%= toValue %>"><%= toValue %></option>
-                <% }); %>
-            </datalist>
-        </div>
-    </div><br>
-    <div id="dates">
-        <div class="InputContainer2" style="margin-left: 10px"><p style="margin-right:10px">Departure
-            <input placeholder="Departure" name="depart" id="dates" class="input2" type="date">
-        </p>
-    </div>
-        <div class="InputContainer2" style="margin-left: 10px"><p>Return
-            <input placeholder="Return" name="arrive" id="dates" class="input2" type="date"></p>
-        </div>
-    </div>
-    <div id="type">
-        <div id="classcateg" class="InputContainer" style="margin-left:10px; margin-bottom:10px;">
-            <select name="Class" id="Class" class="InputContainer" ><option value="" disabled selected>Class</option><option> 1AC</option><option> 2AC </option> <option> 3AC</option> <option> Chair-car </option><option> Sleeper</option>
-            </select>
-        </div>
-    </div>
-    <div id="srch">
-        <div class="searchdiv" style="margin-right: 10px;">
-        <a href="../views/displaytrains.ejs"><button id="searchbtn" type="submit"><img src="/media/magnify.png" id="searchbtnimg"><p id="searchtxt">Search</p></button></a>
-        </div>
-    </div>
-</div>
-</form>
+    </form>
     <div style="background-color:#95B8D1;margin-top:-40px"><p id="Top-picks">OUR TOP PICKS</p></div>
     <div class="deal" style="margin-top: -5px;">
         <div class="hot-deals" style="color:#180276">
@@ -142,12 +142,10 @@ Follow Us On <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style
             toLocation=to;
             classChoice ='';
             departureDate = '';
-            returnDate = '';
             const urlParams = new URLSearchParams({
                 fromLocation,
                 toLocation,
                 departureDate,
-                returnDate,
                 classChoice
             }).toString();
             window.location.href = `displaytrains.ejs?${urlParams}`;
@@ -160,20 +158,37 @@ Follow Us On <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style
             let fromLocation = formData.get('from');
             let toLocation = formData.get('to');
             let departureDate = formData.get('depart');
-            let returnDate = formData.get('arrive');
             let classChoice = formData.get('Class');
         
             const urlParams = new URLSearchParams({
                 fromLocation,
                 toLocation,
                 departureDate,
-                returnDate,
                 classChoice
             }).toString();
 
             // Redirecting to the next page with the constructed URL
             window.location.href = `displaytrains.ejs?${urlParams}`;
         });
+        document.addEventListener('DOMContentLoaded', function() {
+            const fromInput = document.getElementById('from');
+            const toInput = document.getElementById('to');
+            const errorMessage = document.getElementById('error-message');
+        
+            function validateInputs() {
+                const fromValue = fromInput.value;
+                const toValue = toInput.value;
+        
+                if (fromValue && toValue && fromValue === toValue) {
+                    errorMessage.style.display = 'flex';
+                } else {
+                    errorMessage.style.display = 'none';
+                }
+            }
+        
+            fromInput.addEventListener('input', validateInputs);
+            toInput.addEventListener('input', validateInputs);
+        });        
         </script>
 </body>
 </html>
