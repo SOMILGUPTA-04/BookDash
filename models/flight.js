@@ -2,15 +2,6 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const FlightSchema = new mongoose.Schema({
-  FlightName:{
-    type:String,
-    required:true
-  },
-  FlightNumber:{
-    type:Number,
-    required:true,
-    unique:true
-  },
   From:{
     type:String,
     required:true
@@ -30,10 +21,6 @@ const FlightSchema = new mongoose.Schema({
   Class:{
     type:String,
     required:true
-  },
-  Price:{
-    type:Number,
-    required:true,
   },
 });
 const Flight=mongoose.model("flight",FlightSchema);

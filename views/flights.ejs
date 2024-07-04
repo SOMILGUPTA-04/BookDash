@@ -45,7 +45,7 @@
         </a>
         <a href="../views/signup.ejs" id="sign">Sign-up/Login</a>
     </div>
-
+    
     <form id="flightForm">
         <div id="dialogue">
             <div id="first">
@@ -104,28 +104,28 @@
     <div style="background-color:#95B8D1;margin-top:-40px"><p id="Top-picks">OUR TOP PICKS</p></div>
     <div class="deal" style="margin-top: -5px;">
         <div class="hot-deals"  style="color:#180276">
-            <div id="deal" onclick="redirectToFlightPage('Delhi', 'Mumbai');" style="cursor: pointer;">
+            <div id="deal" onclick="redirectToFlightPage('Indira Gandhi International (DEL)', 'Kanpur (KNU)')" style="cursor: pointer;">
                 <h3 style="color:#0000EE">Delhi to Mumbai</h3>
             </div>
         </div>
         <div class="hot-deals" style="color:#180276">
-            <div id="deal" onclick="window.location.href='/displayflights.ejs';" style="cursor: pointer;">
+            <div id="deal" onclick="redirectToFlightPage('Indira Gandhi International (DEL)', 'Goa (GOI)')" style="cursor: pointer;">
                 <h3 style="color:#0000EE">Delhi to Goa</h3>
             </div>
         </div>
         <div class="hot-deals" style="color:#180276">
-            <div id="deal" onclick="window.location.href='/displayflights.ejs';" style="cursor: pointer;">
+            <div id="deal" onclick="redirectToFlightPage('Indira Gandhi International (DEL)', 'Kochi (COK)')" style="cursor: pointer;">
                 <h3 style="color:#0000EE">Delhi to Kochi</h3>
             </div>
         </div>
         <div class="hot-deals" style="color:#180276">
-            <div id="deal" onclick="window.location.href='/views/displayflights.ejs';" style="cursor: pointer;">
-                <h3 style="color:#0000EE">Delhi to Pune</h3>
+            <div id="deal" onclick="redirectToFlightPage('Indira Gandhi International (DEL)', 'Kolhapur (KLH)')" style="cursor: pointer;">
+                <h3 style="color:#0000EE">Delhi to Kolhapur</h3>
             </div>
         </div>
         <div class="hot-deals" style="color:#180276">
-            <div id="deal" onclick="window.location.href='/views/displayflights.ejs';" style="cursor: pointer;">
-                <h3 style="color:#0000EE">Delhi to Srinagar</h3>
+            <div id="deal" onclick="redirectToFlightPage('Indira Gandhi International (DEL)', 'Shillong (SHL)')" style="cursor: pointer;">
+                <h3 style="color:#0000EE">Delhi to Shillong</h3>
             </div>
         </div>
     </div>
@@ -144,12 +144,25 @@ Follow Us On <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style
             </pre>
         </div>
     </footer>
-
+    
     <script src="script.js"></script>
     <script>
-        function redirectToFlightPage(fromLocation, toLocation) {
-            const url = `/views/displayflights.ejs?fromLocation=${encodeURIComponent(fromLocation)}&toLocation=${encodeURIComponent(toLocation)}`;
-            window.location.href = url;
+        function redirectToFlightPage(from, to) {
+            console.log(from);
+            console.log(to);
+            fromLocation=from;
+            toLocation=to;
+            classChoice ='';
+            departureDate = '';
+            returnDate = '';
+            const urlParams = new URLSearchParams({
+                fromLocation,
+                toLocation,
+                departureDate,
+                returnDate,
+                classChoice
+            }).toString();
+            window.location.href = `displayflights.ejs?${urlParams}`;
         }
         document.getElementById('flightForm').addEventListener('submit', function(event) {
             event.preventDefault();

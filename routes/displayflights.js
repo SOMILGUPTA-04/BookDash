@@ -6,12 +6,31 @@ const router = express.Router();
 router.get('/', async(req,res)=>{
     try {
         const { fromLocation, toLocation, departureDate, returnDate, classChoice } = req.query;
-
-        const flightData = await Flight.findOne({ From: fromLocation, To: toLocation, DepartDate: new Date(departureDate), ReturnDate: new Date(returnDate), Class:classChoice });
-
         // Initialize comparison result
         let comparisonResult = {};
         let data = [];
+        
+        if(fromLocation && toLocation && departureDate==='' && returnDate==='' && classChoice==='') {
+            const flightData = await Flight.find({ From: fromLocation, To: toLocation });
+            if (flightData) {
+                flightData.forEach((flight) => {
+                    const comparisonResult = {
+                        from: flight.From === fromLocation,
+                        to: flight.To === toLocation
+                    };
+    
+                    if (comparisonResult.from && comparisonResult.to) {
+                        data.push(flight);
+                    }
+                });
+            } 
+           else {
+                comparisonResult.error = 'Flight not found';
+            }
+            res.render('../views/displayflights.ejs', { data});
+        }
+        const flightData = await Flight.findOne({ From: fromLocation, To: toLocation, DepartDate: new Date(departureDate), ReturnDate: new Date(returnDate), Class:classChoice });
+
         
         // Compare the data
         if (flightData) {
@@ -27,9 +46,6 @@ router.get('/', async(req,res)=>{
        else {
             comparisonResult.error = 'Flight not found';
         } 
-        
-        
-        console.log(comparisonResult);
         res.render('../views/displayflights.ejs', { data});
     }catch(err){
         res.status(500)
