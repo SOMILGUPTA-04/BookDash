@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
             To: toLocation,
             DepartDate: new Date(departureDate),
             ReturnDate: new Date(returnDate),
-            Class: classChoice.toUpperCase() // Ensure class choice matches case
+            Class: classChoice.toUpperCase()
         };
 
 
@@ -44,7 +44,24 @@ router.get('/', async (req, res) => {
         } else {
             console.log('Flight not found');
         }
+        const fromCode = fromLocation.match(/\((.*?)\)/)[1];
+        const toCode = toLocation.match(/\((.*?)\)/)[1];
+        let classCode = classChoice.toLowerCase().charAt(0);
+        if(classChoice === "Premium Economy"){
+            classCode="w";
+        }
+        let formattedDepartureDate = departureDate.split('-').reverse().join('');
+        let formattedReturnDate = returnDate.split('-').reverse().join('');
+        const ixigoUrl = `https://www.ixigo.com/search/result/flight?from=${fromCode}&to=${toCode}&date=${formattedDepartureDate}&returnDate=${formattedReturnDate}&adults=1&children=0&infants=0&class=${classCode}&source=Search%20Form&hbs=true`;
 
+        classCode = classChoice.toUpperCase().charAt(0);
+        if(classChoice ==="Premium Economy"){
+            classCode="PE";
+        }
+        // Format dates to dd/mm/yyyy for MakeMyTrip
+        formattedDepartureDate = departureDate.split('-').reverse().join('/');
+        formattedReturnDate = returnDate.split('-').reverse().join('/');
+        const mmtUrl = `https://www.makemytrip.com/flight/search?itinerary=${fromCode}-${toCode}-${formattedDepartureDate}_${toCode}-${fromCode}-${formattedReturnDate}&tripType=R&paxType=A-1_C-0_I-0&intl=false&cabinClass=${classCode}&ccde=IN&lang=eng`;
         res.render('../views/displayflights.ejs', { data });
     } catch (err) {
         console.error('Error:', err);
