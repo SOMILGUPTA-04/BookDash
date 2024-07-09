@@ -60,35 +60,54 @@
             <a href="../views/signup.ejs" id="sign">Sign-up/Login</a>
         </div>
         
-        <h1>AVAILABLE FLIGHTS</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>CLASS</th>
-                    <th>FLIGHT NUMBER</th>
-                    <th>FLIGHT NAME</th>
-                    <th>DEPARTURE FROM</th>
-                    <th>ARRIVAL TO</th>
-                    <th>DATE OF DEPARTURE</th>
-                    <th>DATE OF RETURN</th>
-                    <th>PRICE</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% data.forEach(function(value){ %>
+        <% if (data.length > 0) { %>
+            <h1>AVAILABLE FLIGHTS</h1>
+            <table>
+                <thead>
                     <tr>
-                        <td><%= value.Class %></td>
-                        <td><%= value.FlightNumber %></td>
-                        <td><%= value.FlightName %></td>
-                        <td><%= value.From %></td>
-                        <td><%= value.To %></td>
-                        <td><%= new Date(value.DepartDate).toLocaleDateString('en-GB') %></td>
-                        <td><%= new Date(value.ReturnDate).toLocaleDateString('en-GB') %></td>
-                        <td><%= value.Price %></td>
+                        <th>Class</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Departure Date</th>
+                        <th>Return Date</th>
+                        <th>Sites</th>
                     </tr>
-                <% }); %>
-            </tbody>
-        </table>       
+                </thead>
+                <tbody>
+                    <% data.forEach(function(value) { %>
+                        <tr>
+                            <td><%= value.Class %></td>
+                            <td><%= value.From %></td>
+                            <td><%= value.To %></td>
+                            <td><%= new Date(value.DepartDate).toLocaleDateString('en-GB') %></td>
+                            <td><%= new Date(value.ReturnDate).toLocaleDateString('en-GB') %></td>
+                            <td><%= value.Price %>
+                                <table class="nested-table">
+                                    <tr>
+                                        <td>Goibibo<button class="btn-53">
+                                            <div class="original">BOOKNOW</div>
+                                            <div class="letters"><span>B</span><span>O</span><span>O</span><span>K</span><span>N</span><span>O</span><span>W</span></div>
+                                          </button>
+                                          </td>
+                                    </tr>
+                                    <tr>
+                                        <td>IRCTC <button class="btn-53">
+                                            <div class="original">BOOKNOW</div>
+                                            <div class="letters"><span>B</span><span>O</span><span>O</span><span>K</span><span>N</span><span>O</span><span>W</span></div>
+                                          </button>
+                                          </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <div style="display: flex;justify-content:center;">
+                <h1>No flights available!</h1>
+            </div>
+        <% } %>       
         <footer id="copyright" style="margin-top:90vh">
             <div id="foot">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height: 20px;margin-top:25px;margin-left:20px"><path fill="#ffffff" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM199.4 312.6c31.2 31.2 81.9 31.2 113.1 0c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9c-50 50-131 50-181 0s-50-131 0-181s131-50 181 0c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0c-31.2-31.2-81.9-31.2-113.1 0s-31.2 81.9 0 113.1z"/></svg>
