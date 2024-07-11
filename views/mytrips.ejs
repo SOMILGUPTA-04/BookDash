@@ -62,20 +62,36 @@
         </div>
         <script src="script.js"></script>
         
-        <h1>History Table</h1>
+        <h1>History Table</h1><br>
+        <h3>FLIGHTS</h3>
         <table>
             <thead>
                 <tr>
-                    <th>MODE</th>
                     <th>DEPARTURE FROM</th>
                     <th>ARRIVAL TO</th>
-                    <th>DATE OF TRAVEL</th>
-                    <th>STATUS</th>
+                    <th>DEPARTURE DATE</th>
+                    <th>RETURN DATE</th>
+                    <th>CLASS</th>
+                    <th>TIMESTAMP</th>
                 </tr>
             </thead>
+            <tbody id="dataContainer_flights">
+            </tbody>
+        </table><br>
+        <h3>TRAINS</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>DEPARTURE FROM</th>
+                    <th>ARRIVAL TO</th>
+                    <th>DEPARTURE DATE</th>
+                    <th>CLASS</th>
+                    <th>TIMESTAMP</th>
+                </tr>
+            </thead>
+            <tbody id="dataContainer_trains">
+            </tbody>
         </table>
-
-
         <footer id="copyright" style="margin-top:90vh">
             <div id="foot">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height: 20px;margin-top:25px;margin-left:20px"><path fill="#ffffff" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM199.4 312.6c31.2 31.2 81.9 31.2 113.1 0c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9c-50 50-131 50-181 0s-50-131 0-181s131-50 181 0c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0c-31.2-31.2-81.9-31.2-113.1 0s-31.2 81.9 0 113.1z"/></svg>
@@ -91,6 +107,55 @@
                 </pre>
             </div>
         </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Get data from local storage
+                let fromflys = JSON.parse(localStorage.getItem('fromflys')) || [];
+                let toflys = JSON.parse(localStorage.getItem('toflys')) || [];
+                let departflys = JSON.parse(localStorage.getItem('departflys')) || [];
+                let returnflys = JSON.parse(localStorage.getItem('returnflys')) || [];
+                let classflys = JSON.parse(localStorage.getItem('classflys')) || [];
+                let timestampflys = JSON.parse(localStorage.getItem('timestampflys')) || [];
+    
+                // Get the container to insert data into
+                let dataContainer_fl = document.getElementById('dataContainer_flights');
+    
+                // Loop through the data and insert rows into the table
+                for (let i = 0; i < fromflys.length; i++) {
+                    let row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${fromflys[i]}</td>
+                        <td>${toflys[i]}</td>
+                        <td>${departflys[i]}</td>
+                        <td>${returnflys[i]}</td>
+                        <td>${classflys[i]}</td>
+                        <td>${timestampflys[i]}</td>
+                    `;
+                    dataContainer_fl.appendChild(row);
+                }
+                // Get data from local storage
+                let fromtrains = JSON.parse(localStorage.getItem('fromtrains')) || [];
+                let totrains = JSON.parse(localStorage.getItem('totrains')) || [];
+                let departrains = JSON.parse(localStorage.getItem('departrains')) || [];
+                let classtrains = JSON.parse(localStorage.getItem('classtrains')) || [];
+                let timestamptrains = JSON.parse(localStorage.getItem('timestamptrains')) || [];
+                // Get the container to insert data into
+                let dataContainer_tr = document.getElementById('dataContainer_trains');
+    
+                // Loop through the data and insert rows into the table
+                for (let i = 0; i < fromtrains.length; i++) {
+                    let row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${fromtrains[i]}</td>
+                        <td>${totrains[i]}</td>
+                        <td>${departrains[i]}</td>
+                        <td>${classtrains[i]}</td>
+                        <td>${timestamptrains[i]}</td>
+                    `;
+                    dataContainer_tr.appendChild(row);
+                }
+            });
+        </script>
     </body>
 </html>
     

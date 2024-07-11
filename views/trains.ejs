@@ -92,28 +92,28 @@
     <div style="background-color:#95B8D1;margin-top:-40px"><p id="Top-picks">OUR TOP PICKS</p></div>
     <div class="deal" style="margin-top: -5px;">
         <div class="hot-deals" style="color:#180276">
-            <div id="deal" onclick="redirectToTrainPage('New Delhi', 'Amritsar');" style="cursor: pointer;">
+            <div id="deal" onclick="redirectToTrainPage('New Delhi (NDLS)', 'Amritsar (ASR)','2024-10-01');" style="cursor: pointer;">
                 <h3 style="color:#0000EE">New Delhi to Amritsar</h3>
             </div>
         </div>
         <div class="hot-deals" style="color:#180276">
-            <div id="deal" onclick="redirectToTrainPage('Ranchi', 'Mumbai');" style="cursor: pointer;">
+            <div id="deal" onclick="redirectToTrainPage('Ranchi (RNC)', 'Mumbai (CSTM)','2025-01-03');" style="cursor: pointer;">
                 <h3 style="color:#0000EE">Ranchi to Mumbai</h3>
             </div>
         </div>
         <div class="hot-deals" style="color:#180276">
-            <div id="deal" onclick="redirectToTrainPage('New Delhi', 'Kolkata');" style="cursor: pointer;">
+            <div id="deal" onclick="redirectToTrainPage('New Delhi (NDLS)', 'Kolkata (HWH)','2025-03-01');" style="cursor: pointer;">
                 <h3 style="color:#0000EE">New Delhi to Kolkata</h3>
             </div>
         </div>
         <div class="hot-deals" style="color:#180276">
-            <div id="deal" onclick="redirectToTrainPage('Bengaluru', 'New Delhi');" style="cursor: pointer;">
+            <div id="deal" onclick="redirectToTrainPage('Bengaluru (SBC)', 'New Delhi (NDLS)','2024-12-27');" style="cursor: pointer;">
                 <h3 style="color:#0000EE">Bengaluru to New Delhi</h3>
             </div>
         </div>
         <div class="hot-deals" style="color:#180276">
-            <div id="deal" onclick="redirectToTrainPage('Goa', 'Bengaluru');" style="cursor: pointer;">
-                <h3 style="color:#0000EE">Goa to New Delhi</h3>
+            <div id="deal" onclick="redirectToTrainPage('Goa (KRMI)', 'Bengaluru (SBC)','2024-12-19');" style="cursor: pointer;">
+                <h3 style="color:#0000EE">Goa to Bengaluru</h3>
             </div>
         </div>
     </div>
@@ -135,59 +135,59 @@ Follow Us On <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style
     </footer>
     <script src="script.js"></script>
     <script>
-        function redirectToTrainPage(from, to) {
-            console.log(from);
-            console.log(to);
-            fromLocation=from;
-            toLocation=to;
-            classChoice ='';
-            departureDate = '';
+        function redirectToTrainPage(from, to, date) {
+            fromtrain=from;
+            totrain=to;
+            departrain =new Date(date).toISOString().split('T')[0];;
+            classtrain ='';
             const urlParams = new URLSearchParams({
-                fromLocation,
-                toLocation,
-                departureDate,
-                classChoice
+                fromtrain,
+                totrain,
+                departrain,
+                classtrain
             }).toString();
             window.location.href = `displaytrains.ejs?${urlParams}`;
         }
         document.getElementById('trainform').addEventListener('submit', function(event) {
             event.preventDefault();
-        
+
             const formData = new FormData(this);
         
-            let fromLocation = formData.get('from');
-            let toLocation = formData.get('to');
-            let departureDate = formData.get('depart');
-            let classChoice = formData.get('Class');
-        
+            let fromtrain = formData.get('from');
+            let totrain = formData.get('to');
+            let departrain = formData.get('depart');
+            let classtrain = formData.get('Class');
+            let timestamptrain = new Date().toLocaleString();
+            // Get existing data from local storage or create new arrays
+            let fromtrains = JSON.parse(localStorage.getItem('fromtrains')) || [];
+            let totrains = JSON.parse(localStorage.getItem('totrains')) || [];
+            let departrains = JSON.parse(localStorage.getItem('departrains')) || [];
+            let classtrains = JSON.parse(localStorage.getItem('classtrains')) || [];
+            let timestamptrains = JSON.parse(localStorage.getItem('timestamptrains')) || [];
+
+            // Add new data to arrays
+            fromtrains.push(fromtrain);
+            totrains.push(totrain);
+            departrains.push(departrain);
+            classtrains.push(classtrain);
+            timestamptrains.push(timestamptrain);
+
+            // Save updated arrays back to local storage
+            localStorage.setItem('fromtrains', JSON.stringify(fromtrains));
+            localStorage.setItem('totrains', JSON.stringify(totrains));
+            localStorage.setItem('departrains', JSON.stringify(departrains));
+            localStorage.setItem('classtrains', JSON.stringify(classtrains));
+            localStorage.setItem('timestamptrains', JSON.stringify(timestamptrains));
+            
             const urlParams = new URLSearchParams({
-                fromLocation,
-                toLocation,
-                departureDate,
-                classChoice
+                fromtrain,
+                totrain,
+                departrain,
+                classtrain
             }).toString();
 
             // Redirecting to the next page with the constructed URL
             window.location.href = `displaytrains.ejs?${urlParams}`;
-        });
-        document.addEventListener('DOMContentLoaded', function() {
-            const fromInput = document.getElementById('from');
-            const toInput = document.getElementById('to');
-            const errorMessage = document.getElementById('error-message');
-        
-            function validateInputs() {
-                const fromValue = fromInput.value;
-                const toValue = toInput.value;
-        
-                if (fromValue && toValue && fromValue === toValue) {
-                    errorMessage.style.display = 'flex';
-                } else {
-                    errorMessage.style.display = 'none';
-                }
-            }
-        
-            fromInput.addEventListener('input', validateInputs);
-            toInput.addEventListener('input', validateInputs);
         });        
         </script>
 </body>

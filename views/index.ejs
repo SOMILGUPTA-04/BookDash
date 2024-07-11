@@ -58,14 +58,14 @@
         <img src="/media/bg.jpeg" id="img1" style="margin-left: 5px;margin-top:5px">
         <div class="deal" style="margin-left: 230px;">
             <div class="hot-deals" style="color:#180276">
-                <div id="deal" onclick="redirectToTrainPage('New Delhi', 'Kolkata');" style="cursor: pointer;">
+                <div id="deal" onclick="redirectToTrainPage('New Delhi (NDLS)', 'Kolkata (HWH)','2025-03-01');" style="cursor: pointer;">
                     <h3 style="color:#0000EE">Delhi to Kolkata</h3>
                 </div>
             </div>
         </div>
         <div class="deal">
             <div class="hot-deals" style="color:#180276">
-                <div id="deal" onclick="redirectToTrainPage('New Delhi', 'Mumbai');" style="cursor: pointer;">
+                <div id="deal" onclick="redirectToTrainPage('New Delhi (NDLS)', 'Mumbai (CSTM)','2024-09-20');" style="cursor: pointer;">
                     <h3 style="color:#0000EE">Delhi to Mumbai</h3>
                 </div>
                 
@@ -77,14 +77,14 @@
     <div style="display: flex;justify-content:flex-start;background-color:aqua;">
         <div class="deal" style="margin-left:80px;margin-top:40px">
             <div class="hot-deals" style="color:#180276">
-                <div id="deal" onclick="redirectToFlightPage('Indira Gandhi International (DEL)', 'Kolkata (CCU)')" style="cursor: pointer;">
+                <div id="deal" onclick="redirectToFlightPage('Indira Gandhi International (DEL)', 'Kolkata (CCU)','2024-11-01','2024-11-05')" style="cursor: pointer;">
                     <h3 style="color:#0000EE">Delhi to Kolkata</h3>
                 </div>
             </div>
         </div>
         <div class="deal" style="margin-top:40px">
             <div class="hot-deals" style="color:#180276">
-                <div id="deal" onclick="redirectToFlightPage('Mumbai (BOM)', 'Indira Gandhi International (DEL)')" style="cursor: pointer;">
+                <div id="deal" onclick="redirectToFlightPage('Mumbai (BOM)', 'Indira Gandhi International (DEL)','2024-07-21','2024-08-01')" style="cursor: pointer;">
                     <h3 style="color:#0000EE">Mumbai to Delhi</h3>
                 </div>
             </div>
@@ -125,37 +125,31 @@ Follow Us On <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style
         clip.addEventListener("mouseout", () => {
             clip.pause();
         })
-        function redirectToTrainPage(from, to) {
-            console.log(from);
-            console.log(to);
-            fromLocation=from;
-            toLocation=to;
-            classChoice ='';
-            departureDate = '';
-            returnDate = '';
+        function redirectToTrainPage(from, to,depart) {
+            fromtrain=from;
+            totrain=to;
+            departrain = depart;
+            classtrain ='';
             const urlParams = new URLSearchParams({
-                fromLocation,
-                toLocation,
-                departureDate,
-                returnDate,
-                classChoice
+                fromtrain,
+                totrain,
+                departrain,
+                classtrain
             }).toString();
             window.location.href = `displaytrains.ejs?${urlParams}`;
         }
-        function redirectToFlightPage(from, to) {
-            console.log(from);
-            console.log(to);
-            fromLocation=from;
-            toLocation=to;
-            classChoice ='';
-            departureDate = '';
-            returnDate = '';
+        function redirectToFlightPage(from, to,depart,arrive) {
+            fromfly=from;
+            tofly=to;
+            classfly ='';
+            departfly = depart;
+            returnfly = arrive;
             const urlParams = new URLSearchParams({
-                fromLocation,
-                toLocation,
-                departureDate,
-                returnDate,
-                classChoice
+                fromfly,
+                tofly,
+                departfly,
+                returnfly,
+                classfly
             }).toString();
             window.location.href = `displayflights.ejs?${urlParams}`;
         }

@@ -5,14 +5,14 @@ import path from "path";
 import trainroute from "./routes/trains.js";
 import flightroute from "./routes/flight.js";
 import contactroute from "./routes/contact.js";
-import homeroute from "./routes/home.js";
+import indexroute from "./routes/index.js";
 import triproute from "./routes/mytrips.js";
 import auroute from "./routes/au.js";
 import tosroute from "./routes/tos.js";
 import suroute from "./routes/signup.js";
 import displayflightsroute from "./routes/displayflights.js";
 import displaytrainsroute from "./routes/displaytrains.js";
-
+import Signup from "./models/signup.js";
 
 const app=express();
 const port=6900;
@@ -33,7 +33,7 @@ app.set("views" , path.resolve("./views"));
 
 app.use(express.static(path.join('views')));
 
-app.use('/views/index.ejs', homeroute);
+app.use('/views/index.ejs', indexroute);
 app.use('/views/flights.ejs', flightroute);
 app.use('/views/trains.ejs', trainroute);
 app.use('/views/contact.ejs', contactroute);
