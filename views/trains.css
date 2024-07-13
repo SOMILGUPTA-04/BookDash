@@ -234,8 +234,8 @@ body{
   justify-content:center;
   align-items: center;
   background-color:#D6EADF;
-  height: 450px;
   background-attachment: scroll;
+  height: 450px;
 }
 .hot-deals{
   display: flex;
@@ -246,7 +246,7 @@ body{
   width: 250px;
   gap: 8px;
 }
-.hot-deals > div{
+#deal-kol{
   display: flex;
   width: 90%;
   height: 250px;
@@ -254,7 +254,60 @@ body{
   justify-content: center;
   align-items: center;
   object-fit: contain;
-  background-color: #EAC4D5;
+  background-image: url(media/kol.jpg);
+  background-size: cover;
+  transition: all ease 0.5s;
+}
+
+#deal-del{
+  display: flex;
+  width: 90%;
+  height: 250px;
+  aspect-ratio:  1/1;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  background-image: url(media/del.jpg);
+  background-size: cover;
+  transition: all ease 0.5s;
+}
+
+#deal-amr{
+  display: flex;
+  width: 90%;
+  height: 250px;
+  aspect-ratio:  1/1;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  background-image: url(media/amr.jpg);
+  background-size: cover;
+  transition: all ease 0.5s;
+}
+
+#deal-mum{
+  display: flex;
+  width: 90%;
+  height: 250px;
+  aspect-ratio:  1/1;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  background-image: url(media/mum.jpg);
+  background-size: cover;
+  transition: all ease 0.5s;
+}
+
+#deal-ben{
+  display: flex;
+  width: 90%;
+  height: 250px;
+  aspect-ratio:  1/1;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  background-image: url(media/ben.jpg);
+  background-size: cover;
   transition: all ease 0.5s;
 }
 .hot-deals > div:hover{

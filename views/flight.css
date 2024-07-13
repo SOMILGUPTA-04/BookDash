@@ -303,7 +303,7 @@ margin-top: 100px;
   width: 250px;
   gap: 8px;
 }
-.hot-deals > div{
+#deal-kol{
   display: flex;
   width: 90%;
   height: 250px;
@@ -311,7 +311,60 @@ margin-top: 100px;
   justify-content: center;
   align-items: center;
   object-fit: contain;
-  background-color:#EAC4D5;
+  background-image: url(media/kol.jpg);
+  background-size: cover;
+  transition: all ease 0.5s;
+}
+
+#deal-hyd{
+  display: flex;
+  width: 90%;
+  height: 250px;
+  aspect-ratio:  1/1;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  background-image: url(media/hyd.jpg);
+  background-size: cover;
+  transition: all ease 0.5s;
+}
+
+#deal-leh{
+  display: flex;
+  width: 90%;
+  height: 250px;
+  aspect-ratio:  1/1;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  background-image: url(media/lad.jpg);
+  background-size: cover;
+  transition: all ease 0.5s;
+}
+
+#deal-mum{
+  display: flex;
+  width: 90%;
+  height: 250px;
+  aspect-ratio:  1/1;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  background-image: url(media/mum.jpg);
+  background-size: cover;
+  transition: all ease 0.5s;
+}
+
+#deal-pat{
+  display: flex;
+  width: 90%;
+  height: 250px;
+  aspect-ratio:  1/1;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  background-image: url(media/pat.jpg);
+  background-size: cover;
   transition: all ease 0.5s;
 }
 .hot-deals > div:hover{
@@ -328,3 +381,5 @@ margin-top: 100px;
 a{
   text-decoration: none;
 }
+
+
